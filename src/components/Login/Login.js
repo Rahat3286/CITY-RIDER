@@ -164,7 +164,7 @@ const Login = () => {
 
     return (
         <div className="container">
-            <div className="card mt-5" style={{ width: '50%', backgroundColor:'rgb(234, 224, 215)' }}>
+            <div className="card mt-5 col-md-6" style={{ backgroundColor:'rgb(234, 224, 215)' }}>
                 <div className="card-body">
                     <form onSubmit={handleSubmit}>
                         <div className="form-group">
