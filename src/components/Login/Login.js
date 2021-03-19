@@ -170,23 +170,28 @@ const Login = () => {
                         <div className="form-group">
                             <h3>{newUser ? 'Create an account' : 'Log In'}</h3>
                             {/* <label htmlFor="exampleInputEmail">Your Name</label> */}
-                            {newUser && <input type="text" name="name" className="form-control" id="exampleInputEmail" aria-describedby="emailHelp" onBlur={handleBlur} placeholder="Name" />}
+                            {newUser && <input type="text" name="name" className="form-control" id="exampleInputEmail" aria-describedby="emailHelp" onBlur={handleBlur} placeholder="Name" />
+                            }
+                            {newUser && <small id="emailHelp" className="form-text text-muted">Enter Your Name</small>}
                         </div>
                         <div className="form-group">
                             {/* <label htmlFor="exampleInputEmail">Email Address</label> */}
                             <input type="email" name="email" className="form-control" id="exampleInputEmail" aria-describedby="emailHelp" onBlur={handleBlur} placeholder="Email" required />
+                            <small id="emailHelp" className="form-text text-muted">Enter Your e-mail address</small>
                         </div>
                         <div className="form-group">
                             {/* <label htmlFor="exampleInputPassword">Password</label> */}
                             <input type="password" name="password" className="form-control" id="exampleInputPassword" onBlur={handleBlur} placeholder="Password" required />
-                            <input type="submit" className="btn btn-primary mt-3" value={newUser ? 'Create an account' : 'Log In'} />
+                            <small id="emailHelp" className="form-text text-muted">Enter minimum 7 characters</small>
+                            {/* <input type="submit" className="btn btn-primary mt-3" value={newUser ? 'Create an account' : 'Log In'} /> */}
+                            <button type="submit" className="btn btn-primary mt-3">{newUser ? 'Create an account' : 'Log In'}</button>
                         </div>
                         <p style={{ color: "red" }}>{user.error}</p>
                         {
-                            user.success && <p style={{ color: "green" }}>User {newUser ? 'Created' : 'Logged In'} Successfully</p>
+                            user.success && <p style={{ color: "green" }}>Acount {newUser ? 'Created' : 'Logged In'} Successfully</p>
                         }
                         <div className="form-group">
-                            <label htmlFor="" style={{ color: 'red' }}>Don't have any account ?</label><br />
+                            <label htmlFor="" className="text-muted">Don't have any account ?</label><br />
                         </div>
                         <div className="form-check">
                             <input type="checkbox" className="form-check-input" onChange={() => setNewUser(!newUser)} name="newUser" id="exampleCheck" />

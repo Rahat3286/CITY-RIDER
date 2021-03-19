@@ -5,7 +5,7 @@ import './Rider.css';
 const Rider = ({ rider }) => {
     const history = useHistory();
     const handleRider = (riderType) => {
-        history.push(`/book/${riderType}`);
+        history.push(`/destination/${riderType}`);
     }
     return (
         <div className="mt-2 ml-2 rider-card">

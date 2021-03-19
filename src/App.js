@@ -1,17 +1,18 @@
 import React, { createContext, useState } from "react";
 import "./App.css";
-import { 
-  BrowserRouter as Router, 
-  Switch, 
-  Route 
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
 } from "react-router-dom";
 import Header from "./components/Header/Header";
 import Home from "./components/Home/Home";
 import Login from "./components/Login/Login";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
-import Book from "./components/Book/Book";
 import Contact from "./components/Contact/Contact";
 import Blog from "./components/Blog/Blog";
+import Destination from "./components/Destination/Destination";
+import Book from "./components/Book/Book";
 // import NotFound from "./NotFound/NotFound";
 
 export const UserContext = createContext();
@@ -21,25 +22,28 @@ function App() {
   return (
     <UserContext.Provider value={[loggedInUser, setLoggedInUser]}>
       <Router>
-        <Header/>
+        <Header />
         <Switch>
           <Route path="/home">
-            <Home/>
+            <Home />
           </Route>
           <Route path="/login">
-            <Login/>
+            <Login />
           </Route>
-          <PrivateRoute path="/book/:riderType">
+          {/* <PrivateRoute path="/book/:riderType">
             <Book/>
+          </PrivateRoute> */}
+          <PrivateRoute path="/destination/:riderType">
+            <Destination />
           </PrivateRoute>
           <Route exact path="/">
-            <Home/>
+            <Home />
           </Route>
           <Route path="/contact">
-            <Contact/>
+            <Contact />
           </Route>
           <Route path="/blog">
-            <Blog/>
+            <Blog />
           </Route>
           {/* <Route path="*">
             <NotFound/>
