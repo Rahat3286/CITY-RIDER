@@ -1,0 +1,7 @@
+.rider-card {
+  cursor: pointer;
+}
+
+.rider-name {
+    text-transform: uppercase;
+}
