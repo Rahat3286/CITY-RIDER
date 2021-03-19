@@ -116,6 +116,7 @@ const Login = () => {
                     newUserInfo.error = '';
                     newUserInfo.success = true;
                     setUser(newUserInfo);
+                    updateUserName(user.name);
                 })
                 .catch((error) => {
                     const newUserInfo = { ...user };
@@ -125,13 +126,14 @@ const Login = () => {
                 });
         }
 
-        if (!newUser && user.email && user.password){
+        if (!newUser && user.email && user.password) {
             firebase.auth().signInWithEmailAndPassword(user.email, user.password)
                 .then(res => {
                     const newUserInfo = { ...user };
                     newUserInfo.error = '';
                     newUserInfo.success = true;
                     setUser(newUserInfo);
+                    console.log('sign in user info', res.user);
                 })
                 .catch((error) => {
                     const newUserInfo = { ...user };
@@ -141,7 +143,20 @@ const Login = () => {
                 });
         }
 
-            e.preventDefault();
+        e.preventDefault();
+    }
+
+    const updateUserName = name => {
+        const user = firebase.auth().currentUser;
+        user.updateProfile({
+            displayName: name,
+        })
+            .then(function () {
+                console.log('user name updated successfully')
+            })
+            .catch(function (error) {
+                console.log(error)
+            });
     }
 
 
@@ -149,32 +164,34 @@ const Login = () => {
 
     return (
         <div className="container">
-            <div className="card mt-5" style={{ width: '100%' }}>
+            <div className="card mt-5" style={{ width: '50%', backgroundColor:'rgb(234, 224, 215)' }}>
                 <div className="card-body">
                     <form onSubmit={handleSubmit}>
                         <div className="form-group">
+                            <h3>{newUser ? 'Create an account' : 'Log In'}</h3>
                             {/* <label htmlFor="exampleInputEmail">Your Name</label> */}
-                            {newUser && <input type="text" name="name" className="form-control" id="exampleInputEmail" aria-describedby="emailHelp" onBlur={handleBlur} placeholder="Enter your Name" />}
+                            {newUser && <input type="text" name="name" className="form-control" id="exampleInputEmail" aria-describedby="emailHelp" onBlur={handleBlur} placeholder="Name" />}
                         </div>
                         <div className="form-group">
                             {/* <label htmlFor="exampleInputEmail">Email Address</label> */}
-                            <input type="email" name="email" className="form-control" id="exampleInputEmail" aria-describedby="emailHelp" onBlur={handleBlur} placeholder="Enter your email" required />
+                            <input type="email" name="email" className="form-control" id="exampleInputEmail" aria-describedby="emailHelp" onBlur={handleBlur} placeholder="Email" required />
                         </div>
                         <div className="form-group">
                             {/* <label htmlFor="exampleInputPassword">Password</label> */}
-                            <input type="password" name="password" className="form-control" id="exampleInputPassword" onBlur={handleBlur} placeholder="Enter the password" required />
+                            <input type="password" name="password" className="form-control" id="exampleInputPassword" onBlur={handleBlur} placeholder="Password" required />
+                            <input type="submit" className="btn btn-primary mt-3" value={newUser ? 'Create an account' : 'Log In'} />
                         </div>
                         <p style={{ color: "red" }}>{user.error}</p>
                         {
-                            user.success && <p style={{ color: "green" }}>User {newUser? 'Created' : 'Logged In'} Successfully</p>
+                            user.success && <p style={{ color: "green" }}>User {newUser ? 'Created' : 'Logged In'} Successfully</p>
                         }
-                        <div className="form-check">
-                            <input type="checkbox" className="form-check-input" id="exampleCheck" />
-                            <label className="form-check-label" htmlFor="exampleCheck">Remember Me</label>
+                        <div className="form-group">
+                            <label htmlFor="" style={{ color: 'red' }}>Don't have any account ?</label><br />
                         </div>
-                        <input className="btn btn-primary" type="submit" value="submit" />
-                        <input type="checkbox" onChange={() => setNewUser(!newUser)} name="newUser" id="" />
-                        <label>New User Sign up</label>
+                        <div className="form-check">
+                            <input type="checkbox" className="form-check-input" onChange={() => setNewUser(!newUser)} name="newUser" id="exampleCheck" />
+                            <label htmlFor="">Create an account</label>
+                        </div>
                     </form>
                 </div>
             </div>
