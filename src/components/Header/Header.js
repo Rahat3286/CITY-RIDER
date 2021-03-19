@@ -4,9 +4,9 @@ import './Header.css';
 
 const Header = () => {
     return (
-        <div classNameName="container">
+        <div className="container">
             <nav className="container navbar navbar-expand-lg navbar-light bg-light">
-                <Link className="navbar-brand" to="/home">
+                <Link to="/home" className="navbar-brand">
                     City Riders
                 </Link>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
