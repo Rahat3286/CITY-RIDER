@@ -1,9 +1,14 @@
+// WORKING CODE
+
 import React, { useContext, useState } from 'react';
 import firebase from "firebase/app";
 import "firebase/auth";
 import firebaseConfig from './firebase.config';
 import { UserContext } from '../../App';
 import { useHistory, useLocation } from 'react-router';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye } from "@fortawesome/free-solid-svg-icons";
+import './Login.css';
 
 
 
@@ -17,7 +22,7 @@ const Login = () => {
         photo: '',
         error: ''
     });
-    
+
     const [loggedInUser, setLoggedInUser] = useContext(UserContext);
     const history = useHistory();
     const location = useLocation();
@@ -116,7 +121,8 @@ const Login = () => {
                     newUserInfo.error = '';
                     newUserInfo.success = true;
                     setUser(newUserInfo);
-                    history.replace(from);
+                    // extra
+                    // history.replace(from);
                     updateUserName(user.name);
                 })
                 .catch((error) => {
@@ -134,6 +140,10 @@ const Login = () => {
                     newUserInfo.error = '';
                     newUserInfo.success = true;
                     setUser(newUserInfo);
+                    // extra
+                    setLoggedInUser(user);
+                    history.replace(from);
+                    
                     console.log('sign in user info', res.user);
                 })
                 .catch((error) => {
@@ -159,6 +169,12 @@ const Login = () => {
             });
     }
 
+    const eye = <FontAwesomeIcon icon={faEye} />;
+    const [passwordShown, setPasswordShown] = useState(false);
+    const togglePasswordVisiblity = () => {
+        setPasswordShown(passwordShown ? false : true);
+    };
+
 
 
 
@@ -181,15 +197,21 @@ const Login = () => {
                         </div>
                         <div className="form-group">
                             {/* <label htmlFor="exampleInputPassword">Password</label> */}
-                            <input type="password" name="password" className="form-control" id="exampleInputPassword" onBlur={handleBlur} placeholder="Password" required />
+                            <input type={passwordShown ? "text" : "password"} name="password" className="form-control" id="exampleInputPassword" onBlur={handleBlur} placeholder="Password" required />
+                            <i className="eye-icon" onClick={togglePasswordVisiblity}>{eye}</i>
                             <small id="emailHelp" className="form-text text-muted">Enter minimum 7 characters</small>
                             {/* <input type="submit" className="btn btn-primary mt-3" value={newUser ? 'Create an account' : 'Log In'} /> */}
                             <button type="submit" className="btn btn-primary mt-3">{newUser ? 'Create an account' : 'Log In'}</button>
+                            {/* <p style={{ fontWeight: 'bolder' }}>
+                                {
+                                    user.success && <p style={{ color: "green" }}>Acount {newUser ? 'Created' : 'Logged In'} Successfully</p>
+                                }
+                            </p> */}
                         </div>
                         <p style={{ color: "red" }}>{user.error}</p>
-                        <p style={{fontWeight:'bolder'}}>
+                        <p style={{ fontWeight: 'bolder' }}>
                             {
-                                user.success && <p style={{ color: "green" }}>Acount {newUser ? 'Created' : 'Logged In'} Successfully</p>
+                                user.success && <p style={{ color: "green" }}>Acount {newUser ? 'Created' : 'Logged In'} Successfully <br/>Now Login to your account</p>
                             }
                         </p>
                         <div className="form-group">
@@ -213,7 +235,7 @@ const Login = () => {
                 <div>
                     <button className="btn btn-primary mt-2" onClick={handleFacebookSignIn}>Continue with Facebook</button>
                 </div>
-                <div className="col-md-6 mt-2" style={{ fontSize: '11px', fontWeight: 'bold', color: 'rgb(255, 234, 0)', backgroundColor:'rgb(255, 149, 0)'}}>Note: You have to Login first to set your destination .</div>
+                <div className="col-md-6 mt-2" style={{ fontSize: '11px', fontWeight: 'bold', color: 'rgb(255, 234, 0)', backgroundColor: 'rgb(255, 149, 0)' }}>Note: You have to Login first to set your destination .</div>
             </div>
         </div>
     );
