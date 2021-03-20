@@ -77,41 +77,6 @@ const Login = () => {
             });
     }
 
-    const handleBlur = (e) => {
-        let isFieldValid = true;
-        if (e.target.name === 'email') {
-            isFieldValid = /\S+@\S+\.\S+/.test(e.target.value);
-        }
-        if (e.target.name === 'password') {
-            const isPasswordValid = e.target.value.length > 6;
-            const passwordHasNumber = /\d{1}/.test(e.target.value);
-            isFieldValid = isPasswordValid && passwordHasNumber;
-        }
-        if (isFieldValid) {
-            const newUserInfo = { ...user };
-            newUserInfo[e.target.name] = e.target.value;
-            setUser(newUserInfo);
-        }
-    }
-
-    const handleSignOut = () => {
-        firebase.auth().signOut()
-            .then(res => {
-                const signedOutUser = {
-                    isSignedIn: false,
-                    name: '',
-                    email: '',
-                    photo: '',
-                    error: '',
-                    success: false
-                }
-                setUser(signedOutUser);
-                console.log(res)
-            })
-            .catch(err => {
-            })
-    }
-
     const handleSubmit = (e) => {
         // console.log(user.email, user.password);
         if (newUser && user.email && user.password) {
@@ -167,6 +132,41 @@ const Login = () => {
             .catch(function (error) {
                 console.log(error)
             });
+    }
+
+    const handleBlur = (e) => {
+        let isFieldValid = true;
+        if (e.target.name === 'email') {
+            isFieldValid = /\S+@\S+\.\S+/.test(e.target.value);
+        }
+        if (e.target.name === 'password') {
+            const isPasswordValid = e.target.value.length > 6;
+            const passwordHasNumber = /\d{1}/.test(e.target.value);
+            isFieldValid = isPasswordValid && passwordHasNumber;
+        }
+        if (isFieldValid) {
+            const newUserInfo = { ...user };
+            newUserInfo[e.target.name] = e.target.value;
+            setUser(newUserInfo);
+        }
+    }
+
+    const handleSignOut = () => {
+        firebase.auth().signOut()
+            .then(res => {
+                const signedOutUser = {
+                    isSignedIn: false,
+                    name: '',
+                    email: '',
+                    photo: '',
+                    error: '',
+                    success: false
+                }
+                setUser(signedOutUser);
+                console.log(res)
+            })
+            .catch(err => {
+            })
     }
 
     const eye = <FontAwesomeIcon icon={faEye} />;
