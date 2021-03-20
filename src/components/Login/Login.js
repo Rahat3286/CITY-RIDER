@@ -184,28 +184,19 @@ const Login = () => {
                     <form onSubmit={handleSubmit}>
                         <div className="form-group">
                             <h3>{newUser ? 'Create an account' : 'Log In'}</h3>
-                            {/* <label htmlFor="exampleInputEmail">Your Name</label> */}
                             {newUser && <input type="text" name="name" className="form-control" id="exampleInputEmail" aria-describedby="emailHelp" onBlur={handleBlur} placeholder="Name" />
                             }
                             {newUser && <small id="emailHelp" className="form-text text-muted">Enter Your Name</small>}
                         </div>
                         <div className="form-group">
-                            {/* <label htmlFor="exampleInputEmail">Email Address</label> */}
                             <input type="email" name="email" className="form-control" id="exampleInputEmail" aria-describedby="emailHelp" onBlur={handleBlur} placeholder="Email" required />
                             <small id="emailHelp" className="form-text text-muted">Enter Your e-mail address</small>
                         </div>
                         <div className="form-group">
-                            {/* <label htmlFor="exampleInputPassword">Password</label> */}
                             <input type={passwordShown ? "text" : "password"} name="password" className="form-control" id="exampleInputPassword" onBlur={handleBlur} placeholder="Password" required />
                             <i className="eye-icon" onClick={togglePasswordVisiblity}>{eye}</i>
                             <small id="emailHelp" className="form-text text-muted">Enter minimum 7 characters</small>
-                            {/* <input type="submit" className="btn btn-primary mt-3" value={newUser ? 'Create an account' : 'Log In'} /> */}
                             <button type="submit" className="btn btn-primary mt-3">{newUser ? 'Create an account' : 'Log In'}</button>
-                            {/* <p style={{ fontWeight: 'bolder' }}>
-                                {
-                                    user.success && <p style={{ color: "green" }}>Acount {newUser ? 'Created' : 'Logged In'} Successfully</p>
-                                }
-                            </p> */}
                         </div>
                         <p style={{ color: "red" }}>{user.error}</p>
                         <p style={{ fontWeight: 'bolder' }}>
@@ -225,10 +216,6 @@ const Login = () => {
             </div>
             <div className="container">
                 <div>
-                    {/* {
-                        user.isSignedIn ? <button className="btn btn-primary mt-2" onClick={handleSignOut}>Sign Out</button> :
-                            <button className="btn btn-primary mt-2" onClick={handleGoogleSignIn}>Continue with Google</button>
-                    } */}
                     <button className="btn btn-primary mt-2" onClick={handleGoogleSignIn}>Continue with Google</button>
                 </div>
                 <div>
