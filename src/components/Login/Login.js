@@ -17,6 +17,7 @@ const Login = () => {
         photo: '',
         error: ''
     });
+    
     const [loggedInUser, setLoggedInUser] = useContext(UserContext);
     const history = useHistory();
     const location = useLocation();
@@ -103,7 +104,6 @@ const Login = () => {
                 console.log(res)
             })
             .catch(err => {
-
             })
     }
 
@@ -116,6 +116,7 @@ const Login = () => {
                     newUserInfo.error = '';
                     newUserInfo.success = true;
                     setUser(newUserInfo);
+                    history.replace(from);
                     updateUserName(user.name);
                 })
                 .catch((error) => {
@@ -142,7 +143,6 @@ const Login = () => {
                     setUser(newUserInfo);
                 });
         }
-
         e.preventDefault();
     }
 
@@ -164,7 +164,7 @@ const Login = () => {
 
     return (
         <div className="container">
-            <div className="card mt-5 col-md-6" style={{ backgroundColor:'rgb(234, 224, 215)' }}>
+            <div className="card mt-5 col-md-6" style={{ backgroundColor: 'rgb(234, 224, 215)' }}>
                 <div className="card-body">
                     <form onSubmit={handleSubmit}>
                         <div className="form-group">
@@ -187,9 +187,11 @@ const Login = () => {
                             <button type="submit" className="btn btn-primary mt-3">{newUser ? 'Create an account' : 'Log In'}</button>
                         </div>
                         <p style={{ color: "red" }}>{user.error}</p>
-                        {
-                            user.success && <p style={{ color: "green" }}>Acount {newUser ? 'Created' : 'Logged In'} Successfully</p>
-                        }
+                        <p style={{fontWeight:'bolder'}}>
+                            {
+                                user.success && <p style={{ color: "green" }}>Acount {newUser ? 'Created' : 'Logged In'} Successfully</p>
+                            }
+                        </p>
                         <div className="form-group">
                             <label htmlFor="" className="text-muted">Don't have any account ?</label><br />
                         </div>
@@ -202,11 +204,16 @@ const Login = () => {
             </div>
             <div className="container">
                 <div>
+                    {/* {
+                        user.isSignedIn ? <button className="btn btn-primary mt-2" onClick={handleSignOut}>Sign Out</button> :
+                            <button className="btn btn-primary mt-2" onClick={handleGoogleSignIn}>Continue with Google</button>
+                    } */}
                     <button className="btn btn-primary mt-2" onClick={handleGoogleSignIn}>Continue with Google</button>
                 </div>
                 <div>
                     <button className="btn btn-primary mt-2" onClick={handleFacebookSignIn}>Continue with Facebook</button>
                 </div>
+                <div className="col-md-6 mt-2" style={{ fontSize: '11px', fontWeight: 'bold', color: 'rgb(255, 234, 0)', backgroundColor:'rgb(255, 149, 0)'}}>Note: You have to Login first to set your destination .</div>
             </div>
         </div>
     );
