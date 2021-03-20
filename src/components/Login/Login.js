@@ -108,7 +108,6 @@ const Login = () => {
                     // extra
                     setLoggedInUser(user);
                     history.replace(from);
-                    
                     console.log('sign in user info', res.user);
                 })
                 .catch((error) => {
