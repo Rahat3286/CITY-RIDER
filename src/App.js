@@ -12,7 +12,6 @@ import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import Contact from "./components/Contact/Contact";
 import Blog from "./components/Blog/Blog";
 import Destination from "./components/Destination/Destination";
-import Book from "./components/Book/Book";
 // import NotFound from "./NotFound/NotFound";
 
 export const UserContext = createContext();
@@ -30,9 +29,6 @@ function App() {
           <Route path="/login">
             <Login />
           </Route>
-          {/* <PrivateRoute path="/book/:riderType">
-            <Book/>
-          </PrivateRoute> */}
           <PrivateRoute path="/destination/:riderType">
             <Destination />
           </PrivateRoute>
@@ -45,9 +41,6 @@ function App() {
           <Route path="/blog">
             <Blog />
           </Route>
-          {/* <Route path="*">
-            <NotFound/>
-          </Route> */}
         </Switch>
       </Router>
     </UserContext.Provider>

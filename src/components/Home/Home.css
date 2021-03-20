@@ -1,6 +1,9 @@
-/* body{
-    background-image:url('/src/images/background.png');
-    background-position: center center;
+body {
+    width: 100%;
+    height: auto;
+    background-image: url("/src/images/background.png");
+    background-repeat: no-repeat;
     background-size: cover;
-    width:100%;
-} */
+    background-position: center center;
+    background-attachment: fixed;
+}

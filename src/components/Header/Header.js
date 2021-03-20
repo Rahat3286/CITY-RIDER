@@ -1,12 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './Header.css';
 
 
 const Header = () => {
     return (
         <div className="container">
-            <nav className="container navbar navbar-expand-lg navbar-light bg-light">
+            <nav className="container navbar navbar-expand-lg navbar-light bg-transparent">
                 <Link to="/home" className="navbar-brand">
                     City Riders
                 </Link>

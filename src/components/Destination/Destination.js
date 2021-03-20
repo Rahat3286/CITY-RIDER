@@ -28,8 +28,8 @@ const Destination = () => {
                             <label htmlFor="" style={{ fontWeight: 'bold' }}>Pick To</label>
                             <input className="form-control" type="text" />
                         </div>
-                        <button className="btn btn-primary">Search</button>
                     </form>
+                    <button className="btn btn-primary mb-3">Search</button>
                 </div>
                 <div className="col-md-9" style={{ width: '100%' }}>
                     <img style={{ width: '100%', height: '35rem' }} src={backgroundImage} alt="" />
