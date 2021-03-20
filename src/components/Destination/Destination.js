@@ -28,6 +28,7 @@ const Destination = () => {
                             <label htmlFor="" style={{ fontWeight: 'bold' }}>Pick To</label>
                             <input className="form-control" type="text" />
                         </div>
+                        <button className="btn btn-primary">Search</button>
                     </form>
                 </div>
                 <div className="col-md-9" style={{ width: '100%' }}>
