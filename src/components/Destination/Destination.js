@@ -4,12 +4,16 @@ import backgroundImage from '../../images/Map.png';
 
 const Destination = () => {
     const { riderType } = useParams();
+    const riderTypeColor={
+        fontWeight: 'bolder',
+        fontSize:'22px',
+        color: 'orange'
+    }
     return (
-        // <div style={{ textAlign: 'center' }}>
         <div className="container pt-5">
             <div className="row d-flex justify-content-around">
                 <div className="col-md-3">
-                    <p style={{ fontWeight: '500' }}>You've selected <span style={{ color: 'orange', fontWeight: '900' }}>{riderType}</span> for your journey</p>
+                    <p style={{ fontWeight: 'bolder' }}>You've selected <span style={riderTypeColor}>{riderType}</span> for your journey</p>
                     <p style={{ fontWeight: '900' }}><Link to="/home" style={{ textDecoration: 'none' }}>Change Ride</Link> </p>
                     <form action="">
                         <div className="form-group">
