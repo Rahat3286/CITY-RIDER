@@ -12,6 +12,7 @@ import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import Contact from "./components/Contact/Contact";
 import Blog from "./components/Blog/Blog";
 import Destination from "./components/Destination/Destination";
+
 // import NotFound from "./NotFound/NotFound";
 
 export const UserContext = createContext();
